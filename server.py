@@ -52,3 +52,8 @@ while 1:
 	start_new_thread(clientthread ,(conn,))
 
 s.close()
+
+"""
+Kudos to Silver Moon for his tutorial in http://www.binarytides.com/python-socket-programming-tutorial/
+"""
+
