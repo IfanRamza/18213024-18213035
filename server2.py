@@ -28,21 +28,41 @@ print 'Socket now listening'
 #Function for handling connections. This will be used to create threads
 def clientthread(conn):
 	#Sending message to connected client
-	conn.send('Welcome to the server. Type something and hit enter\n') #send only takes string
+	conn.send("Welcome to the server. Type 'help' to show the list of comands or type 'list' to show the list of avalable files\n") #send only takes string
 	
 	#infinite loop so that function do not terminate and thread do not end.
 	while True:
 		
 		#Receiving from client
 		data = conn.recv(1024)
-		"""print data"""
+		print data
 		
 		if not data: 
 			break
 		elif data == 'list' :
-			reply = 'OK...\n' + data + '\na.txt\nb.txt\nc.txt'
-			"""print reply"""	
+			reply = 'OK...\n' + data + ':\na). a.txt\nb). b.txt\nc). c.txt'
 			conn.sendall(reply)
+		elif data == 'a' :
+			fo = open("a.txt","r+")
+			st = fo.read(20)
+			reply = 'OK..\n' + "opening "+fo.name+"\n.\n.\n.\n.\n"
+			conn.sendall(reply)
+			conn.sendall(st)
+			fo.close()
+		elif data == 'b' :
+			fo = open("b.txt","r+")
+			st = fo.read(20)
+			reply = 'OK..\n' + "opening "+fo.name+"\n.\n.\n.\n.\n"
+			conn.sendall(reply)
+			conn.sendall(st)
+			fo.close()
+		elif data == 'c' :
+			fo = open("c.txt","r+")
+			st = fo.read(20)
+			reply = 'OK..\n' + "opening "+fo.name+"\n.\n.\n.\n.\n"
+			conn.sendall(reply)
+			conn.sendall(st)
+			fo.close()
 		elif data == "client exit" :
 			print 'Disonnected with ' + add[0] + ':' + str(add[1])
 			break
@@ -64,3 +84,4 @@ while 1:
 	start_new_thread(clientthread ,(conn,))
 
 s.close()
+
