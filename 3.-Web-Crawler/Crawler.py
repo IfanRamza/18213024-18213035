@@ -1,14 +1,19 @@
 #! C:\python27
 
-import re, urllib
+import urllib
+from bs4 import BeautifulSoup
 
-textfile = file('depth_1.txt','wt')
-print ("Enter the URL you wish to crawl..")
-print ('Usage  - "http://phocks.org/stumble/creepy/" <-- With the double quotes')
-myurl = input("@> ")
-for i in re.findall('''href=["'](.[^"']+)["']''', urllib.urlopen(myurl).read(), re.I):
-        print (i) 
-        for ee in re.findall('''href=["'](.[^"']+)["']''', urllib.urlopen(i).read(), re.I):
-                print (ee)
-                textfile.write(ee+'\n')
-textfile.close()
+urllib.urlretrieve("http://detik.com/", "index.html")
+soup = BeautifulSoup(open("index.html"))
+
+#Inisiasi
+i = 1
+
+#Program Utama
+for anchor in soup.findAll('a', href=True):
+    w = anchor['href']
+    if ( str(w).startswith( 'http' )):   
+   		print w
+   		x = str(i)+".html"
+   		urllib.urlretrieve( w , x )
+   		i = i+1
