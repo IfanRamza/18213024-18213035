@@ -23,3 +23,6 @@ September 17th, 2015
     of the file listed in the server
   - Files for the first assignment were moved to "1.-Socket-Programming---Basic" folder
   - Files for the second assignment were moved to "2.-Socket-Programming---Communicating" folder
+
+September 29th, 2015
+  - Committed Crawler.py in "Web Crawler" folder for Web Crawler-Scraper Assignment.
