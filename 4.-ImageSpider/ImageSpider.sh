@@ -1,7 +1,10 @@
 #! /bin/bash
 
+dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+ddir="$dir/$1"
+b="backup_$1"
 
-wget -r -P /home/mario/Documents/Codes/UNIX_Scripts/ -A jpg,jpeg,gif,png $1
-
-
-# Will be updated soon
+wget -r   -A jpg,jpeg,gif,png $1
+[ ! -d $b ] && mkdir $b
+	
+rsync -a  $ddir/ $b
